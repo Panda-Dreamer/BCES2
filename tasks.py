@@ -104,7 +104,6 @@ def analyse(mdata, file_path, result_file_path):
             # Open result file
             lines = []
             with open(result_file_path, 'r') as f:
-                print(f.readlines())
                 for line in f.readlines():
                     lines.append(line.strip())
 
