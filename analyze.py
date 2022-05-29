@@ -276,14 +276,14 @@ def analyzeFile(item):
 
                 # Assign scores to labels
                 p_labels = dict(zip(cfg.LABELS, pred))
-
+                print("p_labels: {}".format(p_labels), "pred: {}".format(pred))
                 # Sort by score
                 p_sorted =  sorted(p_labels.items(), key=operator.itemgetter(1), reverse=True)
 
                 # Store top 5 results and advance indicies
                 
                 results[str(s_start) + '-' + str(s_end)] = p_sorted
-                print("results during 2nd loop:", results)
+                print("results during 2nd loop:", p_sorted)
                 
 
             # Clear batch
