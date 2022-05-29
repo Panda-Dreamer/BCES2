@@ -52,10 +52,10 @@ def loadLabels(labels_file):
 
     labels = []
     with open(labels_file, 'r') as lfile:
-        print(lfile.readlines())
         for line in lfile.readlines():
+            print(line)
             labels.append(line.replace('\n', ''))    
-    print(labels)
+    print("LABELS:",labels)
     return labels
 
 def loadSpeciesList(fpath):
