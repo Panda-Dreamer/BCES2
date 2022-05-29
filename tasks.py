@@ -55,7 +55,9 @@ def resultPooling(lines, num_results=5, pmode='avg'):
 
 
 @app.task
-def analyse(upload,mdata):
+def analyse(r):
+    upload = r.files.get('audio')
+    mdata = json.loads(r.forms.get('meta'))
     # Print divider
     print('{}  {}  {}'.format('#' * 20, datetime.now(), '#' * 20))
 

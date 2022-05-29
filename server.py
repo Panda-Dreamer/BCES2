@@ -28,9 +28,8 @@ def healthcheck():
 
 @bottle.route('/analyze', method='POST')
 def handleRequest():
-    upload = bottle.request.files.get('audio')
-    mdata = json.loads(bottle.request.forms.get('meta'))
-    result = analyse.delay(upload,mdata)
+    
+    result = analyse.delay(bottle.request)
 
     while result.ready() == False:
         gevent.sleep(0.01)
