@@ -53,9 +53,9 @@ def loadLabels(labels_file):
     labels = []
     with open(labels_file, 'r') as lfile:
         for line in lfile.readlines():
-            print(line)
-            labels.append(line.replace('\n', ''))    
-    print("LABELS:",labels)
+            text = line.replace('\n', '')
+            labels.append(text)    
+    print("LABELS:",len(labels))
     return labels
 
 def loadSpeciesList(fpath):
@@ -358,7 +358,7 @@ if __name__ == '__main__':
     # Load eBird codes, labels
     cfg.CODES = loadCodes()
     cfg.LABELS = loadLabels(cfg.LABELS_FILE)
-
+    print("cfg:", len(cfg.LABELS))
     # Load translated labels
     lfile = os.path.join(cfg.TRANSLATED_LABELS_PATH, os.path.basename(cfg.LABELS_FILE).replace('.txt', '_{}.txt'.format(args.locale)))
     if not args.locale in ['en'] and os.path.isfile(lfile):
