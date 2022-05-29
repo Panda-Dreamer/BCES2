@@ -32,9 +32,10 @@ def resultPooling(lines, num_results=5, pmode='avg'):
 
     # Parse results
     results = {}
-    print(lines)
     i=0
+    print("---------------")
     for line in lines:
+        print(line)
         if(i>0):
             d = line.split('\t')
             species = d[2].replace(', ', '_')
@@ -104,6 +105,7 @@ def analyse(mdata, file_path, result_file_path):
             # Open result file
             lines = []
             with open(result_file_path, 'r') as f:
+                print(f.readlines())
                 for line in f.readlines():
                     lines.append(line.strip())
 
