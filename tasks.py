@@ -35,7 +35,6 @@ def resultPooling(lines, num_results=5, pmode='avg'):
     i=0
     print("---------------")
     for line in lines:
-        print(line)
         if(i>0):
             d = line.split('\t')
             species = d[2].replace(', ', '_')

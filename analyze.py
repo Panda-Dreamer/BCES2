@@ -55,7 +55,7 @@ def loadLabels(labels_file):
         for line in lfile.readlines():
             text = line.replace('\n', '')
             labels.append(text)    
-    print("LABELS:",len(labels))
+    print("LABELS: {}".format(len(labels)))
     return labels
 
 def loadSpeciesList(fpath):
@@ -220,9 +220,6 @@ def predict(samples):
     return prediction
 
 def analyzeFile(item):
-    init()
-    
-
     # Get file path and restore cfg
     fpath = item[0]
     cfg.setConfig(item[1])
