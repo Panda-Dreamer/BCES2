@@ -37,7 +37,7 @@ def handleRequest():
     upload.save(path)
     print(upload)
     mdata = json.loads(bottle.request.forms.get('meta'))
-    result = analyse.delay(mdata,path)
+    result = analyse.delay(mdata,path,resultpath)
 
     while result.ready() == False:
         gevent.sleep(0.01)
