@@ -220,6 +220,8 @@ def predict(samples):
 
 def analyzeFile(item):
 
+    
+
     # Get file path and restore cfg
     fpath = item[0]
     cfg.setConfig(item[1])
@@ -273,18 +275,21 @@ def analyzeFile(item):
 
                 # Get prediction
                 pred = p[i]
+                print("DEBUG")
+                print(dict(zip(cfg.LABELS, pred)))
+                print(zip(cfg.LABELS, pred))
+                print(cfg.LABELS)
+                print(pred)
+                print("DEBUG")
 
                 # Assign scores to labels
                 p_labels = dict(zip(cfg.LABELS, pred))
-                print("p_labels: {}".format(p_labels), "pred: {}".format(pred))
                 # Sort by score
                 p_sorted =  sorted(p_labels.items(), key=operator.itemgetter(1), reverse=True)
 
                 # Store top 5 results and advance indicies
                 
                 results[str(s_start) + '-' + str(s_end)] = p_sorted
-                print("results during 2nd loop:", p_sorted)
-                
 
             # Clear batch
             samples = []
