@@ -32,7 +32,7 @@ def handleRequest():
     upload.save("./transfer")
     print(upload)
     mdata = json.loads(bottle.request.forms.get('meta'))
-    result = analyse.delay(mdata, "./transfer"+upload.filename)
+    result = analyse.delay(mdata, "./transfer/"+upload.filename)
 
     while result.ready() == False:
         gevent.sleep(0.01)
