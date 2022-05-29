@@ -247,6 +247,7 @@ def analyzeFile(item):
         results = {}
         samples = []
         timestamps = []
+        print("chunk length: {}".format(len(chunks)))
         for c in range(len(chunks)):
 
             # Add to batch
