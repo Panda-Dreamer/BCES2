@@ -5,7 +5,7 @@ import operator
 import argparse
 import datetime
 import traceback
-
+import time
 from multiprocessing import Pool, freeze_support
 
 import numpy as np
@@ -264,7 +264,7 @@ def analyzeFile(item):
 
             # Predict
             p = predict(samples)
-
+            time.sleep(1)
             # Add to results
             for i in range(len(samples)):
 
@@ -297,6 +297,7 @@ def analyzeFile(item):
         return False     
 
     # Save as selection table
+    
     try:
             saveResultFile(results,result_file_path, fpath)        
     except:
