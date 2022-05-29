@@ -220,12 +220,13 @@ def predict(samples):
     return prediction
 
 def analyzeFile(item):
-
     
 
     # Get file path and restore cfg
     fpath = item[0]
     cfg.setConfig(item[1])
+    cfg.CODES = loadCodes()
+    cfg.LABELS = loadLabels(cfg.LABELS_FILE)
     result_file_path = item[2]
 
     # Start time
@@ -320,7 +321,7 @@ def analyzeFile(item):
 
     return True
 
-if __name__ == '__main__':
+def init():
 
     # Freeze support for excecutable
     freeze_support()
@@ -356,15 +357,7 @@ if __name__ == '__main__':
     cfg.ERROR_LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), cfg.ERROR_LOG_FILE)
 
     # Load eBird codes, labels
-    cfg.CODES = loadCodes()
-    cfg.LABELS = loadLabels(cfg.LABELS_FILE)
-    print("cfg:", len(cfg.LABELS))
-    # Load translated labels
-    lfile = os.path.join(cfg.TRANSLATED_LABELS_PATH, os.path.basename(cfg.LABELS_FILE).replace('.txt', '_{}.txt'.format(args.locale)))
-    if not args.locale in ['en'] and os.path.isfile(lfile):
-        cfg.TRANSLATED_LABELS = loadLabels(lfile)
-    else:
-        cfg.TRANSLATED_LABELS = cfg.LABELS   
+      
 
     ### Make sure to comment out appropriately if you are not using args. ###
 
