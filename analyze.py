@@ -220,6 +220,7 @@ def predict(samples):
     return prediction
 
 def analyzeFile(item):
+    init()
     
 
     # Get file path and restore cfg
@@ -227,6 +228,7 @@ def analyzeFile(item):
     cfg.setConfig(item[1])
     cfg.CODES = loadCodes()
     cfg.LABELS = loadLabels(cfg.LABELS_FILE)
+    cfg.TRANSLATED_LABELS = cfg.LABELS 
     result_file_path = item[2]
 
     # Start time
