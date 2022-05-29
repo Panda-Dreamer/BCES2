@@ -55,55 +55,10 @@ def resultPooling(lines, num_results=5, pmode='avg'):
 
 
 @app.task
-def analyse(r):
-    upload = r.files.get('audio')
-    mdata = json.loads(r.forms.get('meta'))
-    # Print divider
-    print('{}  {}  {}'.format('#' * 20, datetime.now(), '#' * 20))
-
-    # Get request payload
+def analyse(mdata, file_path):
     
-    print(mdata)
 
-    # Get filename
-    name, ext = os.path.splitext(upload.filename.lower())
-
-    file_path_tmp = None
-
-    # Save file
-    try:
-        if ext.lower() in ['.wav', '.mp3', '.flac', '.ogg', '.m4a']:
-            if 'save' in mdata and mdata['save']:
-                save_path = os.path.join(cfg.FILE_STORAGE_PATH, str(date.today()))
-                if not os.path.exists(save_path):
-                    os.makedirs(save_path)
-                file_path = os.path.join(save_path, name + ext)
-            else:
-                save_path = ''
-                file_path_tmp = tempfile.NamedTemporaryFile(suffix=ext.lower(), delete=False)
-                file_path_tmp.close()
-                file_path = file_path_tmp.name
-            upload.save(file_path, overwrite=True)
-
-        else:
-            data = {'msg': 'Filetype not supported.'}
-            return json.dumps(data)
-    
-    except:
-        if file_path_tmp is not None:
-            os.unlink(file_path_tmp.name)
-
-        # Print traceback
-        print(traceback.format_exc(), flush=True)
-
-        # Write error log
-        msg = 'Error: Cannot save file {}.\n{}'.format(file_path, traceback.format_exc())
-        print(msg, flush=True)
-        writeErrorLog(msg)
-
-        # Return error
-        data = {'msg': 'Error while saving file.'}
-        return json.dumps(data)
+    #Deleted hastag save file and above
 
     # Analyze file
     try:
@@ -188,5 +143,9 @@ def analyse(r):
         data = {'msg': 'Error during analysis: {}'.format(str(e))}      
         return json.dumps(data)    
     finally:
-        if file_path_tmp is not None:
-            os.unlink(file_path_tmp.name)
+
+        # Delete file
+        try:
+            os.remove(file_path)
+        except:
+            pass
