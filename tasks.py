@@ -15,6 +15,7 @@ import analyze
 
 app = app = Celery('tasks', backend='rpc://', broker='pyamqp://')
 
+#celery -A tasks worker -l info
 
 
 @app.task
@@ -56,7 +57,7 @@ def resultPooling(lines, num_results=5, pmode='avg'):
 
 @app.task
 def analyse(mdata, file_path):
-    
+    print("File path: {}".format(file_path))
 
     #Deleted hastag save file and above
 
