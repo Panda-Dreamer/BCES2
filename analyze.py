@@ -301,7 +301,7 @@ def analyzeFile(item):
         return False     
 
     # Save as selection table
-    print("Final resultsE: ", results)
+    #print("Final resultsE: ", results)
     try:
             saveResultFile(results,result_file_path, fpath)        
     except:
