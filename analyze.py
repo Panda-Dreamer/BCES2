@@ -264,7 +264,7 @@ def analyzeFile(item):
 
             # Predict
             p = predict(samples)
-            time.sleep(1)
+            
             # Add to results
             for i in range(len(samples)):
 
@@ -281,7 +281,10 @@ def analyzeFile(item):
                 p_sorted =  sorted(p_labels.items(), key=operator.itemgetter(1), reverse=True)
 
                 # Store top 5 results and advance indicies
+                
                 results[str(s_start) + '-' + str(s_end)] = p_sorted
+                print("results during 2nd loop:", results)
+                
 
             # Clear batch
             samples = []
@@ -297,7 +300,7 @@ def analyzeFile(item):
         return False     
 
     # Save as selection table
-    
+    print("Final results: ", results)
     try:
             saveResultFile(results,result_file_path, fpath)        
     except:
