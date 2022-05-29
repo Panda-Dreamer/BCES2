@@ -56,7 +56,7 @@ def resultPooling(lines, num_results=5, pmode='avg'):
 
 
 @app.task
-def analyse(mdata, file_path):
+def analyse(mdata, file_path, result_file_path):
 
     #Deleted hastag save file and above
 
@@ -92,14 +92,14 @@ def analyse(mdata, file_path):
             analyze.predictSpeciesList() 
 
         # Analyze file
-        success = analyze.analyzeFile((file_path, cfg.getConfig()))
+        success = analyze.analyzeFile((file_path, cfg.getConfig(), result_file_path))
 
         # Parse results
         if success:
             
             # Open result file
             lines = []
-            with open(cfg.OUTPUT_PATH, 'r') as f:
+            with open(result_file_path, 'r') as f:
                 for line in f.readlines():
                     lines.append(line.strip())
 

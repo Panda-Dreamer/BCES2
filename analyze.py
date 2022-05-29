@@ -79,10 +79,6 @@ def predictSpeciesList():
 
 def saveResultFile(r, path, afile_path):
 
-    # Make folder if it doesn't exist
-    if len(os.path.dirname(path)) > 0 and not os.path.exists(os.path.dirname(path)):
-        os.makedirs(os.path.dirname(path))
-
     # Selection table
     out_string = ''
 
@@ -227,6 +223,7 @@ def analyzeFile(item):
     # Get file path and restore cfg
     fpath = item[0]
     cfg.setConfig(item[1])
+    result_file_path = item[2]
 
     # Start time
     start_time = datetime.datetime.now()
@@ -300,23 +297,7 @@ def analyzeFile(item):
 
     # Save as selection table
     try:
-
-        # Make directory if it doesn't exist
-        if len(os.path.dirname(cfg.OUTPUT_PATH)) > 0 and not os.path.exists(os.path.dirname(cfg.OUTPUT_PATH)):
-            os.makedirs(os.path.dirname(cfg.OUTPUT_PATH), exist_ok=True)
-
-        if os.path.isdir(cfg.OUTPUT_PATH):
-            rpath = fpath.replace(cfg.INPUT_PATH, '')
-            rpath = rpath[1:] if rpath[0] in ['/', '\\'] else rpath
-            if cfg.RESULT_TYPE == 'table':
-                rtype = '.BirdNET.selection.table.txt' 
-            elif cfg.RESULT_TYPE == 'audacity':
-                rtype = '.BirdNET.results.txt'
-            else:
-                rtype = '.BirdNET.results.csv'
-            saveResultFile(results, os.path.join(cfg.OUTPUT_PATH, rpath.rsplit('.', 1)[0] + rtype), fpath)
-        else:
-            saveResultFile(results, cfg.OUTPUT_PATH, fpath)        
+            saveResultFile(results,result_file_path, fpath)        
     except:
 
         # Print traceback

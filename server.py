@@ -31,7 +31,9 @@ def healthcheck():
 @bottle.route('/analyze', method='POST')
 def handleRequest():
     upload = bottle.request.files.get('audio')
-    path = "./transfer/{}.{}".format(uuid.uuid4(), upload.filename.split('.')[1])
+    thread_uuid = uuid.uuid4()
+    path = "./transfer/{}.{}".format(thread_uuid+"-sound", upload.filename.split('.')[1])
+    resultpath = "./transfer/{}".format(thread_uuid+"-result")
     upload.save(path)
     print(upload)
     mdata = json.loads(bottle.request.forms.get('meta'))
