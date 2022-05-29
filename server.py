@@ -12,6 +12,8 @@ import gevent
 import config as cfg
 import analyze
 from tasks import analyse 
+import uuid
+
 def clearErrorLog():
     
     if os.path.isfile(cfg.ERROR_LOG_FILE):
@@ -29,10 +31,11 @@ def healthcheck():
 @bottle.route('/analyze', method='POST')
 def handleRequest():
     upload = bottle.request.files.get('audio')
-    upload.save("./transfer")
+    path = "./transfer/{}.{}".format(uuid.uuid4(), upload.filename.split('.')[1])
+    upload.save(path)
     print(upload)
     mdata = json.loads(bottle.request.forms.get('meta'))
-    result = analyse.delay(mdata, "./transfer/"+upload.filename)
+    result = analyse.delay(mdata,path)
 
     while result.ready() == False:
         gevent.sleep(0.01)
