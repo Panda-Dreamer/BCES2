@@ -32,13 +32,17 @@ def resultPooling(lines, num_results=5, pmode='avg'):
 
     # Parse results
     results = {}
+    print(lines)
+    i=0
     for line in lines:
-        d = line.split('\t')
-        species = d[2].replace(', ', '_')
-        score = float(d[-1])
-        if not species in results:
-            results[species] = []
-        results[species].append(score)
+        if(i>0):
+            d = line.split('\t')
+            species = d[2].replace(', ', '_')
+            score = float(d[-1])
+            if not species in results:
+                results[species] = []
+            results[species].append(score)
+        i+=1
 
     # Compute score for each species
     for species in results:
