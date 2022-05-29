@@ -52,9 +52,10 @@ def loadLabels(labels_file):
 
     labels = []
     with open(labels_file, 'r') as lfile:
+        print(lfile.readlines())
         for line in lfile.readlines():
             labels.append(line.replace('\n', ''))    
-
+    print(labels)
     return labels
 
 def loadSpeciesList(fpath):
@@ -275,12 +276,7 @@ def analyzeFile(item):
 
                 # Get prediction
                 pred = p[i]
-                print("DEBUG")
-                print(dict(zip(cfg.LABELS, pred)))
-                print(zip(cfg.LABELS, pred))
-                print(cfg.LABELS)
-                print(pred)
-                print("DEBUG")
+
 
                 # Assign scores to labels
                 p_labels = dict(zip(cfg.LABELS, pred))
