@@ -280,6 +280,7 @@ def analyzeFile(item):
 
                 # Assign scores to labels
                 p_labels = dict(zip(cfg.LABELS, pred))
+                print("Labels: {}".format(p_labels))
                 # Sort by score
                 p_sorted =  sorted(p_labels.items(), key=operator.itemgetter(1), reverse=True)
 
