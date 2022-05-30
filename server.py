@@ -41,6 +41,12 @@ def handleRequest():
 
     while result.ready() == False:
         gevent.sleep(0.01)
+    # Delete file
+    try:
+        os.remove(path)
+        os.remove(resultpath)
+    except:
+        pass
     return result.get()
     
 

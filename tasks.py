@@ -146,10 +146,5 @@ def analyse(mdata, file_path, result_file_path):
 
         data = {'msg': 'Error during analysis: {}'.format(str(e))}      
         return json.dumps(data)    
-    finally:
 
-        # Delete file
-        try:
-            os.remove(file_path)
-        except:
-            pass
+        
