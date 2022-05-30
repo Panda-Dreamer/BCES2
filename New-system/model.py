@@ -4,9 +4,6 @@ os.environ['CUDA_VISIBLE_DEVICES'] = ''
 
 import numpy as np
 
-import warnings
-warnings.filterwarnings("ignore")
-
 try:
     import tflite_runtime.interpreter as tflite
 except ModuleNotFoundError:

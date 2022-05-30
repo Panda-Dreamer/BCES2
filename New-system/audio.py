@@ -1,8 +1,6 @@
 import numpy as np
 
-import config as cfg
-
-RANDOM = np.random.RandomState(cfg.RANDOM_SEED)
+RANDOM = np.random.RandomState(1)
 
 def openAudioFile(path, sample_rate=48000, offset=0.0, duration=None):    
     
