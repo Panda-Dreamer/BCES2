@@ -4,23 +4,25 @@ import analyze
 app = app = Celery('tasks', backend='rpc://', broker='pyamqp://')
 
 def makeConfig(debug):
-    settings = {}
-    settings.LATITUDE = -1
-    settings.LONGITUDE = -1
-    settings.WEEK = -1
-    settings.SIGMOID_SENSITIVITY = 1.0
-    settings.LOCATION_FILTER_THRESHOLD = 0.03
-    settings.LABELS_FILE = './Files/Labels.txt'
-    settings.CODES_FILE = './Files/Codes.json'
-    settings.SPECIES_FILE = './Files/SpeciesList.json'
-    settings.FR_LABELS_FILES = './Files/Labels_FR.txt'
-    settings.Debug = debug
-
-    #Sound settings
-
-    settings.SAMPLE_RATE = 48000
-    settings.SIG_LENGTH = 3.0
-    settings.SIG_MINLEN = 3.0
+    settings = {
+        'LATITUDE':-1,
+        'LATITUDE' : -1,
+        'LONGITUDE' : -1,
+        'WEEK' : -1,
+        'SIGMOID_SENSITIVITY' : 1.0,
+        'LOCATION_FILTER_THRESHOLD' : 0.03,
+        'LABELS_FILE' : './Files/Labels.txt',
+        'CODES_FILE' : './Files/Codes.json',
+        'SPECIES_FILE' : './Files/SpeciesList.json',
+        'FR_LABELS_FILES' : './Files/Labels_FR.txt',
+        'Debug': debug,
+        'SAMPLE_RATE':48000,
+        'SIG_LENGTH':3.0,
+        'SIG_MINLEN':3.0,
+        'LABELS':[],
+        'CODES':[],
+        'FR_LABELS':{}
+    }
 
 
 
