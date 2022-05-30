@@ -84,7 +84,7 @@ def format(results, config):
 
 
 def analyzeFile(audio_path, config):
-
+    print(config)
     start_time = datetime.datetime.now()
     debugLog("analyzeFile", "Starting for file: "+str(audio_path), config.Debug)
     config.LABELS = loadLabels(config.LABELS_FILE)
