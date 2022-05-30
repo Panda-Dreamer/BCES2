@@ -38,6 +38,3 @@ def analyse(audio_path, debug):
         return results
 
 
-@app.task
-def server_homepage():
-    
